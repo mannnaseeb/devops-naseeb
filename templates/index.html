@@ -401,6 +401,159 @@
     @keyframes scrollPulse { 0%,100% { opacity:0.3; } 50% { opacity:1; } }
     @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
     @keyframes termLine { to { opacity:1; } }
+
+    /* PROFILE */
+    .profile-card {
+      display: flex;
+      gap: 4rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .profile-img-wrap {
+      position: relative;
+      flex-shrink: 0;
+      width: 200px; height: 200px;
+    }
+
+    .profile-img {
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      position: relative;
+      z-index: 2;
+      border: 2px solid var(--accent);
+      filter: grayscale(20%) contrast(1.1);
+      box-shadow: 0 0 30px rgba(0,255,65,0.3), 0 0 60px rgba(0,255,65,0.1);
+    }
+
+    .profile-ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,255,65,0.4);
+      animation: spinRing 8s linear infinite;
+      z-index: 1;
+    }
+
+    .profile-ring::before {
+      content: '';
+      position: absolute;
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      top: 10px; left: 50%;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .ring2 {
+      inset: -16px;
+      border-color: rgba(0,255,65,0.2);
+      animation: spinRing 12s linear infinite reverse;
+    }
+
+    .ring2::before {
+      top: auto;
+      bottom: 8px;
+      background: var(--accent2);
+      box-shadow: 0 0 8px var(--accent2);
+    }
+
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .profile-status {
+      position: absolute;
+      bottom: 8px; right: -10px;
+      background: var(--bg);
+      border: 1px solid var(--accent);
+      padding: 0.3em 0.8em;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-shadow: 0 0 6px var(--accent);
+    }
+
+    .status-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: blink 1.5s ease-in-out infinite;
+      box-shadow: 0 0 6px var(--accent);
+    }
+
+    .profile-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      text-shadow: 0 0 20px rgba(0,255,65,0.2);
+    }
+
+    .profile-role {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 0 8px var(--accent);
+    }
+
+    .profile-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .ptag {
+      font-size: 0.65rem;
+      padding: 0.3em 0.8em;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      background: rgba(0,255,65,0.03);
+    }
+
+    .profile-bio {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 500px;
+      margin-bottom: 2rem;
+    }
+
+    .profile-stats {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-shadow: 0 0 15px var(--accent);
+    }
+
+    .stat-label {
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
@@ -435,6 +588,37 @@
     SCROLL
   </div>
 </div>
+
+<!-- PROFILE -->
+<section id="profile">
+  <div class="section-label">00 — Identity</div>
+  <div class="profile-card">
+    <div class="profile-img-wrap">
+      <div class="profile-ring"></div>
+      <div class="profile-ring ring2"></div>
+      <img src="/static/profile.jpg" alt="Naseeb Mohammad" class="profile-img"/>
+      <div class="profile-status"><span class="status-dot"></span> Available</div>
+    </div>
+    <div class="profile-info">
+      <h2 class="profile-name">Naseeb Mohammad</h2>
+      <p class="profile-role">// DevOps Engineer</p>
+      <div class="profile-tags">
+        <span class="ptag">IBM IKS</span>
+        <span class="ptag">CIBC</span>
+        <span class="ptag">Infrastructure</span>
+        <span class="ptag">Canada 🇨🇦</span>
+      </div>
+      <p class="profile-bio">
+        Infrastructure engineer specializing in Kubernetes cluster management, CI/CD pipeline automation, and enterprise-grade DevOps practices.
+      </p>
+      <div class="profile-stats">
+        <div class="stat"><span class="stat-num">82+</span><span class="stat-label">Jenkins Jobs</span></div>
+        <div class="stat"><span class="stat-num">3+</span><span class="stat-label">Years DevOps</span></div>
+        <div class="stat"><span class="stat-num">120GB</span><span class="stat-label">Data Managed</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ABOUT -->
 <section id="about">
@@ -528,7 +712,7 @@
       <span class="contact-val">LinkedIn</span>
       <span class="contact-arrow">↗</span>
     </a>
-    <a href="mailto:hello@devopsnaseeb.com" class="contact-item">
+    <a href="/cdn-cgi/l/email-protection#452d2029292a052120332a35362b24362020276b262a28" class="contact-item">
       <span class="contact-type">Email</span>
       <span class="contact-val">Get in Touch</span>
       <span class="contact-arrow">↗</span>
@@ -540,7 +724,7 @@
   <p>Built with precision by <span>Naseeb</span> · devopsnaseeb.com · &copy; 2026</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── Cursor ──
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
@@ -642,9 +826,4 @@ window.addEventListener('resize',()=>{
 // ── Skill bars ──
 new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    if(e.isIntersecting) e.target.querySelectorAll('.skill-fill').forEach(b=>b.style.transform='scaleX(1)');
-  });
-},{threshold:0.3}).observe(document.querySelector('.skills-grid'));
-</script>
-</body>
-</html>
+    if(e.isIntersecting) e.target.querySelectorAll('.ski
